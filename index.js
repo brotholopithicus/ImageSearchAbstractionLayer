@@ -1,8 +1,8 @@
 const https = require('https');
 const http = require('http');
 const fs = require('fs');
-const PORT = process.env.PORT;
 require('dotenv').config();
+const PORT = process.env.PORT;
 
 const bingRequest = require('./lib/bingRequest');
 
