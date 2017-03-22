@@ -1,0 +1,17 @@
+{
+    "name": "img-search-abstraction-layer",
+    "version": "0.0.1",
+    "description": "image search abstraction layer",
+    "main": "server.js",
+    "author": "James Jarvis",
+    "git-repository": "https://github.com/brotholopithicus/img-search-abstraction-layer.git",
+    "license": "MIT",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "dotenv": "^4.0.0",
+        "mongoose": "^4.9.1"
+    }
+}
