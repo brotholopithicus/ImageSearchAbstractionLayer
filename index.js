@@ -47,6 +47,7 @@ async function requestHandler(req, res) {
                         }
                         data.push(tmpObj);
                     }
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.write(JSON.stringify(data));
                     res.end();
                 });
@@ -72,6 +73,7 @@ async function requestHandler(req, res) {
                     }
                 });
                 const response = await bingRequest(query);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.write(response);
                 res.end();
             } else {
@@ -92,6 +94,8 @@ async function requestHandler(req, res) {
 function handleError(err) {
     // elegant and concise
     console.log(err);
+    res.writeHead(302, { 'Location': '/' });
+    res.end();
 }
 
 server.listen(PORT, () => console.log(`Server Listening On Port: ${PORT}`));
