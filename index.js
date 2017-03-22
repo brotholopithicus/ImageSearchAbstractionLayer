@@ -15,13 +15,13 @@ db.once('open', () => console.log('connected to db'));
 
 const Search = require('./models/search');
 
-const sslOptions = {
-    key: fs.readFileSync('./ssl/key.pem'),
-    cert: fs.readFileSync('./ssl/cert.pem'),
-    passphrase: process.env.SSL_PASSPHRASE
-}
-
-const server = process.env.PROTOCOL === 'http' ? http.Server(requestHandler) : https.Server(sslOptions, requestHandler);
+const server = process.env.PROTOCOL === 'http' ?
+    http.Server(requestHandler) :
+    https.Server({
+        key: fs.readFileSync('./ssl/key.pem'),
+        cert: fs.readFileSync('./ssl/cert.pem'),
+        passphrase: process.env.SSL_PASSPHRASE
+    }, requestHandler);
 
 async function requestHandler(req, res) {
     const url = require('url');
@@ -81,7 +81,8 @@ async function requestHandler(req, res) {
             break;
         default:
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(`<ul><li><a href="/api/latest">/api/latest</a> - last ten searches.</li><li><a href="/api/search?q=monkey&offset=0">/api/search?q=monkey&offset=0</a> - search images: q is your query, offset is page number.</li></ul>`);
+            const html = `<ul><li><a href="/api/latest">/api/latest</a> - last ten searches.</li><li><a href="/api/search?q=monkey&offset=0">/api/search?q=monkey&offset=0</a> - search images: q is your query, offset is page number.</li></ul>`;
+            res.write(html);
             res.end();
             break;
 
