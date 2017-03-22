@@ -2,6 +2,9 @@
     "name": "img-search-abstraction-layer",
     "version": "0.0.1",
     "description": "image search abstraction layer",
+    "engines": {
+        "node": "7.6.0"
+    },
     "main": "server.js",
     "author": "James Jarvis",
     "git-repository": "https://github.com/brotholopithicus/img-search-abstraction-layer.git",
